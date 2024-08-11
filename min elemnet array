@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {5, 7, 2, 9, 3, 10, 1, 6}; // Example array
+    int n ;
+    // scanf("%d",&n);// Calculate the number of elements in the array
+    int min = arr[0];  // Assume the first element is the minimum
+
+    // Traverse the array to find the minimum element
+    for (int i = 1; i < 8; i++) {// we can replace 8 from n if we want user input
+        if (arr[i] < min) {
+            min = arr[i];  // Update min if a smaller element is found
+        }
+    }
+
+    printf("The minimum element in the array is: %d\n", min);
+
+    return 0;
+}
