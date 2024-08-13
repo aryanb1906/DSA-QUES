@@ -1,0 +1,56 @@
+// wap  to sprase matrix with  3 tuples
+// wap to represnt a polynomial using 1d array and perform and addition of 2 polynomial equation
+// wap to represnt a polynomial using 1d array and perform the multiplication of 2 polynimial equation
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int matrix[4][4] = {{1, 0, 0, 4},
+                        {0, 6, 0, 8},
+                        {9, 0, 10, 0},
+                        {0, 11, 0, 0}};
+    int count = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (matrix[i][j] != 0)
+            {
+                count++;
+            }
+        }
+    }
+
+
+    int arr[8][3];
+    arr[0][0] = 4;
+    arr[0][1] = 4;
+    arr[0][2] = count;
+    int k = 1;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (matrix[i][j] != 0)
+            {
+                arr[k][0] = i;
+                arr[k][1] = j;
+                arr[k][2] = matrix[i][j];
+                k++;
+            }
+        }
+    }
+
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%d\t", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
