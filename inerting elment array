@@ -2,7 +2,7 @@
 int main()
 {
     int arr[100] = {1, 2, 3, 4, 5, 6}; // array
-    int n = 5;                         // Current number of elements
+    int n = 6;                         // Current number of elements
     int element = 98;                  // the elemnt u want to add in arry
     int pos = 3;                       // the postion at which u want to add
 
