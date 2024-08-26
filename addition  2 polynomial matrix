@@ -1,1 +1,49 @@
 
+#include <stdio.h>
+
+int main() {
+    // Example polynomials: 
+    // p1 represents 3x^2 + 5x + 6
+    // p2 represents 4x^3 + 2x + 7
+    int p1[] = {6, 5, 3}; // Coefficients of 6 + 5x + 3x^2
+    int p2[] = {7, 2, 0, 4}; // Coefficients of 7 + 2x + 0x^2 + 4x^3
+
+    // Degree of the polynomials
+    int degree1 = sizeof(p1)/sizeof(p1[0]) - 1;
+    int degree2 = sizeof(p2)/sizeof(p2[0]) - 1;
+
+    // Determine the degree of the result polynomial
+    int max_degree = degree1 > degree2 ? degree1 : degree2;
+
+    // Result array to store the sum of polynomials
+    int result[max_degree + 1];
+
+    // Initialize the result array with 0
+    for (int i = 0; i <= max_degree; i++) {
+        result[i] = 0;
+    }
+
+    // Add the first polynomial to the result
+    for (int i = 0; i <= degree1; i++) {
+        result[i] += p1[i];
+    }
+
+    // Add the second polynomial to the result
+    for (int i = 0; i <= degree2; i++) {
+        result[i] += p2[i];
+    }
+
+    // Print the resulting polynomial
+    printf("The resulting polynomial is: ");
+    for (int i = max_degree; i >= 0; i--) {
+        if (result[i] != 0) {
+            printf("%dx^%d", result[i], i);
+            if (i > 0) {
+                printf(" + ");
+            }
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
