@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int main() {
+    // Example Sparse Matrices in RCV form
+    // Matrix A: Row, Column, Value
+    int A[3][3] = {{0, 2, 3},
+                   {1, 3, 4},
+                   {2, 0, 5}};
+    
+    // Matrix B: Row, Column, Value
+    int B[3][3] = {{0, 1, 2},
+                   {1, 3, 1},
+                   {2, 0, 3}};
+    
+    int C[6][3]; // To store the result, max possible size is size of A + size of B
+    int i = 0, j = 0, k = 0;
+    
+    while (i < 3 && j < 3) {
+        if (A[i][0] < B[j][0] || (A[i][0] == B[j][0] && A[i][1] < B[j][1])) {
+            // A's element comes first
+            C[k][0] = A[i][0];
+            C[k][1] = A[i][1];
+            C[k][2] = A[i][2];
+            i++;
+        } else if (B[j][0] < A[i][0] || (B[j][0] == A[i][0] && B[j][1] < A[i][1])) {
+            // B's element comes first
+            C[k][0] = B[j][0];
+            C[k][1] = B[j][1];
+            C[k][2] = B[j][2];
+            j++;
+        } else {
+            // Both have the same row and column, so add the values
+            C[k][0] = A[i][0];
+            C[k][1] = A[i][1];
+            C[k][2] = A[i][2] + B[j][2];
+            i++;
+            j++;
+        }
+        k++;
+    }
+
+    // Copy any remaining elements from A
+    while (i < 3) {
+        C[k][0] = A[i][0];
+        C[k][1] = A[i][1];
+        C[k][2] = A[i][2];
+        i++;
+        k++;
+    }
+
+    // Copy any remaining elements from B
+    while (j < 3) {
+        C[k][0] = B[j][0];
+        C[k][1] = B[j][1];
+        C[k][2] = B[j][2];
+        j++;
+        k++;
+    }
+
+    // Print the Resultant Matrix
+    printf("Resultant Sparse Matrix in RCV form:\n");
+    printf("Row\tColumn\tValue\n");
+    for (int x = 0; x < k; x++) {
+        printf("%d\t%d\t%d\n", C[x][0], C[x][1], C[x][2]);
+    }
+
+    return 0;
+}
