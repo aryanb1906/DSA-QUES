@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    // Degree of the polynomial
+    int degree = 3;
+    
+    // Array to store the coefficients (index represents power of x)
+    int poly[4] = {1, 2, 0, 5}; // Corresponds to 5x^3 + 0x^2 + 2x + 1
+
+    // Printing the polynomial
+    printf("The polynomial is: ");
+    for (int i = degree; i >= 0; i--) {
+        if (poly[i] != 0) {
+            printf("%dx^%d", poly[i], i);
+            if (i > 0) {
+                printf(" + ");
+            }
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
