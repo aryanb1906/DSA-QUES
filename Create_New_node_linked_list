@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+}; // define a node structure
+
+struct node *createnode(int data)
+{
+    struct node *next_node = (struct node *)malloc(sizeof(struct node));
+    next_node->data = data;
+    next_node->next = NULL;
+    return next_node;
+} // to create a new node
+
+int main()
+{
+    // Create a new node with data 42
+    struct node *node = createnode(42);
+
+    // Print the data in the new node
+    printf("Data in the new node: %d\n", node->data);
+
+    // Free the allocated memory for the node
+    free(node);
+
+    return 0;
+}
