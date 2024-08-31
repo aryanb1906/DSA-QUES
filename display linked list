@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+// Function to create a new node
+struct node *createnode(int data)
+{
+    struct node *new_node = (struct node *)malloc(sizeof(struct node));
+    new_node->data = data;
+    new_node->next = NULL;
+    return new_node;
+}
+
+// Function to display the linked list
+void displayLinkedList(struct node *head)
+{
+    struct node *current = head;
+    while (current != NULL)
+    {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main()
+{
+    // Create nodes
+    struct node *head = createnode(10);
+    head->next = createnode(20);
+    head->next->next = createnode(30);
+
+    // Display the linked list
+    printf("Linked List: ");
+    displayLinkedList(head);
+
+    // Free allocated memory
+    struct node *current = head;
+    struct node *next_node;
+    while (current != NULL)
+    {
+        next_node = current->next;
+        free(current);
+        current = next_node;
+    }
+
+    return 0;
+}
