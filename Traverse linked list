@@ -36,10 +36,7 @@ int main() {
     // Traverse the list and print the elements
     traverse(head);
 
-    // Free the allocated memory
-    free(head);
-    free(second);
-    free(third);
+   
 
     return 0;
 }
