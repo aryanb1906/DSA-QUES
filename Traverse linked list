@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to traverse the linked list and print its elements
+void traverse(struct Node* head) {
+    struct Node* current = head;  // Start from the head
+    
+    while (current != NULL) {      // Loop until the end of the list
+        printf("%d -> ", current->data);  // Print the data of the current node
+        current = current->next;          // Move to the next node
+    }
+    printf("NULL\n");  // Indicate the end of the list
+}
+
+int main() {
+    // Creating a simple linked list for demonstration: 1 -> 2 -> 3 -> NULL
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));
+
+    head->data = 1;
+    head->next = second;
+
+    second->data = 2;
+    second->next = third;
+
+    third->data = 3;
+    third->next = NULL;
+
+    // Traverse the list and print the elements
+    traverse(head);
+
+    // Free the allocated memory
+    free(head);
+    free(second);
+    free(third);
+
+    return 0;
+}
