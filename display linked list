@@ -35,19 +35,11 @@ int main()
     head->next = createnode(20);
     head->next->next = createnode(30);
 
-    // Display the linked list
+   
     printf("Linked List: ");
     displayLinkedList(head);
 
-    // Free allocated memory
-    struct node *current = head;
-    struct node *next_node;
-    while (current != NULL)
-    {
-        next_node = current->next;
-        free(current);
-        current = next_node;
-    }
+  
 
     return 0;
 }
