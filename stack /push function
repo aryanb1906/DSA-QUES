@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define MAX 5 // Maximum size of the stack
+
+// Declare the stack and the top variable
+int stack[MAX];
+int TOP = -1; // Initially the stack is empty
+
+// Function to push an element onto the stack
+void push(int data) {
+    // Check if the stack is full
+    if (TOP == MAX - 1) {
+        printf("Stack Overflow! Cannot push %d, stack is full.\n", data);
+    } else {
+        // Increment TOP and add the data to the stack
+        TOP = TOP + 1;
+        stack[TOP] = data;
+        printf("Pushed %d onto the stack.\n", data);
+    }
+}
+
+// Function to display the current elements in the stack
+void display() {
+    if (TOP == -1) {
+        printf("Stack is empty.\n");
+    } else {
+        printf("Current stack: ");
+        for (int i = TOP; i >= 0; i--) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+  
+
+   
+    display();
+
+    return 0;
+}
