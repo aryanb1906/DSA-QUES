@@ -8,7 +8,7 @@ struct Node {
 };
 
 // Function to traverse the linked list and print its elements
-void traverse(struct Node* head) {
+struct Node* traverse(struct Node* head) {
     struct Node* current = head;  // Start from the head
     
     while (current != NULL) {      // Loop until the end of the list
