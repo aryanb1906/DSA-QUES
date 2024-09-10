@@ -13,7 +13,7 @@ int main() {
         }
     }
 
-    printf("The minimum element in the array is: %d\n", max);
+    printf("The maximum element in the array is: %d\n", max);
 
     return 0;
 }
