@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+int main()
+{
+    int sparseMatrix[4][4] = {
+        {0, 0, 3, 0},
+        {0, 0, 0, 4},
+        {5, 0, 0, 0},
+        {0, 0, 0, 0}};
+
+    int size = 0;
+
+    // Count non-zero elements
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (sparseMatrix[i][j] != 0)
+            {
+                size++;
+            }
+        }
+    }
+
+    // Create arrays to store row, column, and value of non-zero elements
+    int rows[size], cols[size], values[size];
+
+    int k = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (sparseMatrix[i][j] != 0)
+            {
+                rows[k] = i;
+                cols[k] = j;
+                values[k] = sparseMatrix[i][j];
+                k++;
+            }
+        }
+    }
+
+    // Printing the sparse matrix representation
+    printf("Sparse Matrix Representation:\n");
+    printf("Row\tColumn\tValue\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d\t%d\t%d\n", rows[i], cols[i], values[i]);
+    }
+
+    // Transpose: swap rows and columns
+    printf("\nTranspose of Sparse Matrix:\n");
+    printf("Row\tColumn\tValue\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d\t%d\t%d\n", cols[i], rows[i], values[i]);
+    }
+
+    return 0;
+}
