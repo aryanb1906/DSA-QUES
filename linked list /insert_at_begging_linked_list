@@ -8,8 +8,7 @@ struct Node
     struct Node *next;
 };
 
-// Function to insert a node at the beginning
-void insertAtBeginning(struct Node **head, int Data)
+struct Node *insertAtBeginning(struct Node **head, int Data)
 {
     // Step 1: Create a new node
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -23,7 +22,7 @@ void insertAtBeginning(struct Node **head, int Data)
 }
 
 // Function to print the linked list
-void printList(struct Node *head)
+struct Node *printList(struct Node *head)
 {
     struct Node *current = head;
     while (current != NULL)
