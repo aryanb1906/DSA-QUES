@@ -17,10 +17,10 @@ struct node *createnode(int data)
 }
 
 // Function to display the linked list
-struct node*displayLinkedList(struct node *head)
+ struct node *displayLinkedList(struct node *head)
 {
     struct node *current = head;
-    while (current != NULL)
+    while(current != NULL)
     {
         printf("%d -> ", current->data);
         current = current->next;
@@ -30,11 +30,33 @@ struct node*displayLinkedList(struct node *head)
 
 int main()
 {
-    // Create nodes
-    struct node *head = createnode(10);
-    head->next = createnode(20);
-    head->next->next = createnode(30);
+    int n, data;
+    struct node *head = NULL, *temp = NULL, *new_node = NULL;
 
+    printf("Enter the number of nodes: ");  // Input number of nodes
+    scanf("%d", &n);
+
+    // Input data for each node and create the linked list
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter data for node %d: ", i + 1);
+        scanf("%d", &data);
+
+        new_node = createnode(data);
+
+        // If this is the first node, make it the head
+        if (head == NULL)
+        {
+            head = new_node;
+        }
+        else
+        {
+            temp->next = new_node;
+        }
+        temp = new_node; // Move temp to the new node
+    }
+
+    // Display the linked list
     printf("Linked List: ");
     displayLinkedList(head);
 
