@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+void insertAtBeginning(struct Node **head, int Data)
+{
+
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = Data;
+
+    newNode->next = *head;
+
+    *head = newNode;
+}
+
+struct Node *afternode(struct Node **head, int Data, int pos)
+{
+    // Step 1: Create a new node
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = Data;
+    newNode->next = NULL;
+
+    struct Node *last = *head;
+    for (int i = 1; i < pos; i++)
+    {
+        last = last->next; // to traverse the linked list
+    }
+    newNode->next = last->next;
+    last->next = newNode;
+}
+
+// Function to print the linked list
+struct Node *printList(struct Node *head)
+{
+    struct Node *current = head;
+    while (current != NULL)
+    {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main()
+{
+    struct Node *head = NULL; // Initialize an empty list
+
+    insertAtBeginning(&head, 5);
+    insertAtBeginning(&head, 4);
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+     printList(head);
+    afternode(&head, 9, 3);
+
+    printList(head);
+
+    return 0;
+}
