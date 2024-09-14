@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+
+struct Node *insertAtBeginning(struct Node **head, int Data) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = Data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+
+void deleteAtBeginning(struct Node **head) {
+    if (*head == NULL) {
+        printf("List is empty, nothing to delete.\n");
+        return;
+    }
+
+    // Step 1: Store the current head in a temporary variable
+    struct Node *temp = *head;
+
+    // Step 2: Move the head pointer to the next node
+    *head = (*head)->next;
+
+    // Step 3: Free the memory of the old head
+    free(temp);
+}
+
+// Function to print the linked list
+void printList(struct Node *head) {
+    struct Node *current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node *head = NULL; // Initialize an empty list
+
+    // Insert some nodes at the beginning
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+    // Print the list
+    printf("Initial List: ");
+    printList(head);
+
+    // Delete a node at the beginning
+    printf("After deleting at the beginning:\n");
+    deleteAtBeginning(&head);
+    printList(head);
+
+    return 0;
+}
