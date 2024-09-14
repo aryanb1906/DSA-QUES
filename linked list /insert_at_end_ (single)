@@ -1,41 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a node
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Function to insert a node at the end
-void insertAtEnd(struct Node** head, int Data) {
+struct Node*insertAtEnd(struct Node** head, int Data) {
     // Step 1: Create a new node
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = Data;
     newNode->next = NULL;  
 
-    
+    // If the list is empty, make the new node the head
     if (*head == NULL) {
         *head = newNode;
         return;
     }
 
-  
+    // Traverse to the last node
     struct Node* last = *head;
     while (last->next != NULL) {
         last = last->next;
     }
 
-  
+    // Link the new node to the end of the list
     last->next = newNode;
 }
 
-// Function to print the linked list
-void printList(struct Node* head) {
+
+struct Node*displayLinkedList(struct Node* head) {
     struct Node* current = head;
     while (current != NULL) {
         printf("%d -> ", current->data);
-       current = current->next;
+        current = current->next;
     }
     printf("NULL\n");
 }
@@ -48,10 +46,7 @@ int main() {
     insertAtEnd(&head, 2);
     insertAtEnd(&head, 3);
 
-    // Print the list
-    printList(head);
-
-   
+    displayLinkedList(head);
 
     return 0;
 }
