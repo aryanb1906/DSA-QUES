@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+
+void insertAtBeginning(struct Node **head, int Data) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = Data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+
+void deleteAtEnd(struct Node **head) {
+    // Check if the list is empty
+    if (*head == NULL) {
+        printf("List is empty, nothing to delete.\n");
+        return;
+    }
+
+   
+    if ((*head)->next == NULL) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+
+    struct Node *temp = *head;
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+
+    
+    free(temp->next);
+    temp->next = NULL;
+}
+
+
+void printList(struct Node *head) {
+    struct Node *current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node *head = NULL; // Initialize an empty list
+
+    // Insert some nodes at the beginning
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+    // Print the list
+    printf("Initial List: ");
+    printList(head);
+
+    // Delete a node from the end
+    printf("After deleting the last node:\n");
+    deleteAtEnd(&head);
+    printList(head);
+
+    return 0;
+}
