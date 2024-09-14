@@ -5,7 +5,7 @@ struct node
 {
     int data;
     struct node *next;
-}; // define a node structure
+}; 
 
 struct node *createnode(int data)
 {
