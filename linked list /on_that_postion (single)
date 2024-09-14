@@ -8,7 +8,7 @@ struct Node
     struct Node *next;
 };
 
-void insertAtBeginning(struct Node **head, int Data)
+struct Node *insertAtBeginning(struct Node **head, int Data)
 {
 
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -20,7 +20,7 @@ void insertAtBeginning(struct Node **head, int Data)
 }
 
 // Function to insert a node at the end
-void on_that_postion(struct Node **head, int Data, int pos)// same as at that pos
+struct Node *on_that_postion(struct Node **head, int Data, int pos)// same as at that pos
 {
     pos = pos - 1;
     // Step 1: Create a new node
@@ -37,11 +37,11 @@ void on_that_postion(struct Node **head, int Data, int pos)// same as at that po
     last->next = newNode;
 }
 
-// Function to print the linked list
-void printList(struct Node *head)
+
+ struct Node *displayLinkedList(struct Node *head)
 {
     struct Node *current = head;
-    while (current != NULL)
+    while(current != NULL)
     {
         printf("%d -> ", current->data);
         current = current->next;
@@ -59,11 +59,11 @@ int main()
     insertAtBeginning(&head, 2);
     insertAtBeginning(&head, 1);
 
-    
+    displayLinkedList(head);
     on_that_postion(&head, 9, 3);
 
-    // Print the list
-    printList(head);
+ 
+   displayLinkedList(head);
 
     return 0;
 }
