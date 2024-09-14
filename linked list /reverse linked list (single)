@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+// Function to insert a node at the beginning
+void insertAtBeginning(struct Node **head, int Data) {
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = Data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// Function to reverse the linked list
+void reverseLinkedList(struct Node **head) {
+    struct Node *prev = NULL;
+    struct Node *current = *head;
+    struct Node *next = NULL;
+
+    while (current != NULL) {
+        // Store the next node
+        next = current->next;
+
+        // Reverse the current node's pointer
+        current->next = prev;
+
+        // Move the pointers one position forward
+        prev = current;
+        current = next;
+    }
+
+    // Update the head pointer to the new head (which is `prev` now)
+    *head = prev;
+}
+
+void printList(struct Node *head) {
+    struct Node *current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node *head = NULL;  // Initialize an empty list
+
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+    printf("Original List: ");
+    printList(head);
+
+    reverseLinkedList(&head);
+
+    printf("Reversed List: ");
+    printList(head);
+
+    return 0;
+}
