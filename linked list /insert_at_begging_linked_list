@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a node
 struct Node
 {
     int data;
     struct Node *next;
 };
+
 
 struct Node *insertAtBeginning(struct Node **head, int Data)
 {
@@ -21,8 +21,7 @@ struct Node *insertAtBeginning(struct Node **head, int Data)
     *head = newNode;
 }
 
-// Function to print the linked list
-struct Node *printList(struct Node *head)
+struct Node *displayLinkedList(struct Node *head)
 {
     struct Node *current = head;
     while (current != NULL)
@@ -37,13 +36,11 @@ int main()
 {
     struct Node *head = NULL; // Initialize an empty list
 
-    // Insert some nodes at the beginning
     insertAtBeginning(&head, 3);
     insertAtBeginning(&head, 2);
     insertAtBeginning(&head, 1);
 
-    // Print the list
-    printList(head);
+    displayLinkedList(head);
 
     return 0;
 }
