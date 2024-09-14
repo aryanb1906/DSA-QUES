@@ -19,7 +19,6 @@ struct Node *insertAtBeginning(struct Node **head, int Data)
     *head = newNode;
 }
 
-// Function to insert a node at the end
 struct Node *on_that_postion(struct Node **head, int Data, int pos)// same as at that pos
 {
     pos = pos - 1;
