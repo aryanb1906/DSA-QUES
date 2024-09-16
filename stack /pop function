@@ -4,7 +4,6 @@
 int stack[MAX]; // Array to store stack elements
 int top = -1;   // Stack is initially empty (top = -1)
 
-// Function to push an element onto the stack
 void push(int data) {
     if (top == MAX - 1) { // Check if the stack is full
         printf("Stack Overflow! Cannot push %d.\n", data);
@@ -15,7 +14,7 @@ void push(int data) {
     }
 }
 
-// Function to pop an element from the stack
+
 void pop() {
     if (top == -1) { // Check if the stack is empty
         printf("Stack Underflow! Nothing to pop.\n");
@@ -26,7 +25,6 @@ void pop() {
     }
 }
 
-// Function to display the current stack
 void display() {
     if (top == -1) {
         printf("Stack is empty.\n");
@@ -39,7 +37,6 @@ void display() {
     }
 }
 
-// Main function to test the stack operations
 int main() {
     push(10);
     push(20);
