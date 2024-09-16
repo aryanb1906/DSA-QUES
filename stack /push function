@@ -1,8 +1,8 @@
 #include <stdio.h>
-#define MAX 5 // Maximum size of the stack
+#define MAX 5 
 
-int stack[MAX]; // Array to store stack elements
-int top = -1;   // Stack is initially empty (top = -1)
+int stack[MAX]; 
+int top = -1;   
 
 // Function to push an element onto the stack
 void push(int data) {
@@ -15,9 +15,6 @@ void push(int data) {
     }
 }
 
-
-
-// Function to display the current stack
 void display() {
     if (top == -1) {
         printf("Stack is empty.\n");
