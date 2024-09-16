@@ -1,1 +1,57 @@
+#include <stdio.h>
+#define SIZE 5  // Define the size of the queue
+
+int queue[SIZE];
+int front = -1, rear = -1;  // Initialize front and rear
+
+// Function to enqueue an element into the queue
+void enqueue(int value) {
+    if (rear == SIZE - 1) {  // Check if the queue is full
+        printf("Queue Overflow! Cannot enqueue %d\n", value);
+    } else {
+        if (front == -1)  // If the queue is empty, move front to 0
+            front = 0;
+        rear++;  // Move rear to the next position
+        queue[rear] = value;  // Insert the new element
+        printf("Enqueued %d\n", value);
+    }
+}
+
+// Function to dequeue an element from the queue
+void dequeue() {
+    if (front == -1 || front > rear) {  // Check if the queue is empty
+        printf("Queue Underflow! Cannot dequeue\n");
+    } else {
+        printf("Dequeued %d\n", queue[front]);  // Remove the front element
+        front++;  // Move front to the next position
+        if (front > rear) {  // Reset the queue when it's empty
+            front = rear = -1;
+        }
+    }
+}
+
+// Function to display the elements of the queue
+void display() {
+    if (front == -1 || front > rear) {  // Check if the queue is empty
+        printf("Queue is empty\n");
+    } else {
+        printf("Queue elements are: ");
+        for (int i = front; i <= rear; i++) {  // Traverse from front to rear
+            printf("%d ", queue[i]);  // Print each element
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    display();  // Display the elements of the queue
+
+    dequeue();
+    display();  // Display after dequeue
+    
+    return 0;
+}
 
