@@ -1,1 +1,30 @@
+#include <stdio.h>
+#define SIZE 5  // Define the size of the queue
+
+int queue[SIZE];
+int front = -1, rear = -1;  // Initialize front and rear
+
+// Function to enqueue an element into the queue
+void enqueue(int value) {
+    if (rear == SIZE - 1) {  // Check if the queue is full
+        printf("Queue Overflow! Cannot enqueue %d\n", value);
+    } else {
+        if (front == -1)  // If the queue is empty, move front to 0
+            front = 0;
+        rear++;  // Move rear to the next position
+        queue[rear] = value;  // Insert the new element
+        printf("Enqueued %d\n", value);
+    }
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    enqueue(60);  // This should show a queue overflow
+    
+    return 0;
+}
 
