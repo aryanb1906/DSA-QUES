@@ -1,33 +1,56 @@
 #include <stdio.h>
-#define SIZE 5  // Define the size of the queue
+#define MAX 5  // Maximum size of the queue
 
-int queue[SIZE];
-int front = -1, rear = -1;  // Initialize front and rear
+int queue[MAX];
+int front = -1;
+int rear = -1;
 
-// Function to enqueue an element into the queue
-void enqueue(int value) {
-    if (rear == SIZE - 1) {  // Check if the queue is full
-        printf("Queue Overflow! Cannot enqueue %d\n", value);
+int isEmpty() {
+    return front == -1;
+}
+
+int dequeue() {
+    int data;
+    
+    if (isEmpty()) {
+        printf("Queue is empty! Dequeue operation cannot be performed.\n");
+        return 0;
     } else {
-        if (front == -1)  // If the queue is empty, move front to 0
-            front = 0;
-        rear++;  // Move rear to the next position
-        queue[rear] = value;  // Insert the new element
-        printf("Enqueued %d\n", value);
+        data = queue[front];
+        
+        // If only one element was in the queue
+        if (front == rear) {
+            front = rear = -1; // Reset both pointers
+        } else {
+            front++; // Move the front pointer to the next element
+        }
+    }
+    
+    return data;
+}
+
+void display() {
+    if (isEmpty()) {
+        printf("Queue is empty!\n");
+    } else {
+        printf("Queue elements are: ");
+        for (int i = front; i <= rear; i++) {
+            printf("%d ", queue[i]);
+        }
+        printf("\n");
     }
 }
 
-// Function to dequeue an element from the queue
-void dequeue() {
-    if (front == -1 || front > rear) {  // Check if the queue is empty
-        printf("Queue Underflow! Cannot dequeue\n");
+void enqueue(int data) {
+    if (rear == MAX - 1) {
+        printf("Queue is full!\n");
     } else {
-        printf("Dequeued %d\n", queue[front]);  // Remove the front element
-        front++;  // Move front to the next position
-        // If the queue becomes empty, reset front and rear
-        if (front > rear) {
-            front = rear = -1;
+        if (front == -1) { // If the queue is empty
+            front = 0;
         }
+        rear++;
+        queue[rear] = data;
+       
     }
 }
 
@@ -35,11 +58,13 @@ int main() {
     enqueue(10);
     enqueue(20);
     enqueue(30);
-    dequeue();  // Removes 10
-    dequeue();  // Removes 20
-    dequeue();  // Removes 30
-    dequeue();  // This should show a queue underflow
+    enqueue(40);
+    enqueue(50);
+
+    display();
+    
+    printf("Dequeued: %d\n", dequeue());
+    display();
     
     return 0;
 }
-
