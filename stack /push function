@@ -4,7 +4,6 @@
 int stack[MAX]; 
 int top = -1;   
 
-// Function to push an element onto the stack
 void push(int data) {
     if (top == MAX - 1) { // Check if the stack is full
         printf("Stack Overflow! Cannot push %d.\n", data);
