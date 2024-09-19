@@ -1,37 +1,28 @@
 #include <stdio.h>
-#define MAX 5 
+#define Max 5  
 
-int stack[MAX]; 
-int top = -1;   
+int queue[Max];
+int front = -1, rear = -1;  // Initialize front and rear
 
-void push(int data) {
-    if (top == MAX - 1) { // Check if the stack is full
-        printf("Stack Overflow! Cannot push %d.\n", data);
+void enqueue(int value) {
+    if (rear == Max - 1) {  // Check if the queue is full
+        printf("Queue Overflow! Cannot enqueue %d\n", value);
     } else {
-        top = top + 1;    // Increment top to the next position
-        stack[top] = data; // Add data to the stack
-        printf("%d pushed onto stack.\n", data);
+        if (front == -1)  // If the queue is empty, move front to 0
+            front = 0;
+        rear++;  // Move rear to the next position
+        queue[rear] = value;  // Insert the new element
+        printf("Enqueued %d\n", value);
     }
 }
 
-void display() {
-    if (top == -1) {
-        printf("Stack is empty.\n");
-    } else {
-        printf("Stack elements are: ");
-        for (int i = 0; i <= top; i++) {
-            printf("%d ", stack[i]);
-        }
-        printf("\n");
-    }
-}
-
-// Main function to test the stack operations
 int main() {
-    push(10);
-    push(20);
-    push(30);
-    display();
- 
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    enqueue(60);  // This should show a queue overflow
+    
     return 0;
 }
