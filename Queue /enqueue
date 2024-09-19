@@ -13,7 +13,6 @@ void enqueue(int value) {
             front = 0;
         rear++;  // Move rear to the next position
         queue[rear] = value;  // Insert the new element
-        printf("Enqueued %d\n", value);
     }
 }
 
