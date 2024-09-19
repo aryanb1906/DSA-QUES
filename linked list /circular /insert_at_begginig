@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure of a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));  // Allocate memory for the node
+    newNode->data = value;  // Set data of the node
+    newNode->next = NULL;   // Initialize next as NULL
+    return newNode;         // Return the new node
+}
+
+// Function to insert a node at the beginning of the circular linked list
+void insertAtBeginning(struct Node** head, int value) {
+    struct Node* newNode = createNode(value);  // Create the new node
+    struct Node* temp = *head;
+
+    // If the list is empty
+    if (*head == NULL) {
+        newNode->next = newNode;  // Point newNode to itself
+        *head = newNode;          // Make newNode the head
+    } else {
+        // Traverse to the last node
+        while (temp->next != *head) {
+            temp = temp->next;
+        }
+        // Make the new node point to the current head
+        newNode->next = *head;
+        // Update the last node to point to the new node
+        temp->next = newNode;
+        // Make the new node the new head
+        *head = newNode;
+    }
+}
+
+// Function to display (traverse) the elements of the circular linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+
+    // If the list is empty
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    printf("Elements in the circular linked list:\n");
+
+    // Traverse and print each node's data
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);  // Loop until we come back to the head
+
+    printf("(back to head)\n");  // Indicate the circular nature
+}
+
+int main() {
+    struct Node *head = NULL;
+
+    // Insert nodes at the beginning of the list
+    insertAtBeginning(&head, 30);
+    insertAtBeginning(&head, 20);
+    insertAtBeginning(&head, 10);
+
+    // Display the elements of the circular linked list
+    display(head);
+
+    return 0;
+}
