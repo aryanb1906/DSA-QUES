@@ -40,7 +40,6 @@ int main()
         }
     }
 
-    // Printing the sparse matrix representation
     printf("Sparse Matrix Representation:\n");
     printf("Row\tColumn\tValue\n");
     for (int i = 0; i < size; i++)
