@@ -9,7 +9,7 @@ struct node
 
 struct node *createnode(int data)
 {
-    struct node *next_node = (struct node *)malloc(sizeof(struct node));
+   struct node *next_node = (struct node *)malloc(sizeof(struct node));
     next_node->data = data;
     next_node->next = NULL;
     return next_node;
@@ -18,13 +18,10 @@ struct node *createnode(int data)
 int main()
 {
     // Create a new node with data 42
-    struct node *node = createnode(42);
+  struct node *next_node = createnode(42);
 
     // Print the data in the new node
-    printf("Data in the new node: %d\n", node->data);
-
-    // Free the allocated memory for the node
-    free(node);
+    printf("Data in the new node: %d\n", next_node->data);
 
     return 0;
 }
