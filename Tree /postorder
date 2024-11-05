@@ -47,7 +47,7 @@ int main() {
     insertNode(root, 10);
   
     
-    printf("Preorder traversal of the binary tree:\n");
+    printf("Postorder traversal of the binary tree:\n");
     postorderTraversal(root);
 
     return 0;
