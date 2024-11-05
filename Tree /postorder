@@ -28,11 +28,11 @@ struct Node* insertNode(struct Node* root, int data) {
 }
 
 
-void preorderTraversal(struct Node* root) {
+void postorderTraversal(struct Node* root) {
     if (root != NULL) {
         
-        preorderTraversal(root->left);
-        preorderTraversal(root->right);
+        postorderTraversal(root->left);
+        postorderTraversal(root->right);
         printf("%d ", root->data);
     }
 }
@@ -48,7 +48,7 @@ int main() {
   
     
     printf("Preorder traversal of the binary tree:\n");
-    preorderTraversal(root);
+    postorderTraversal(root);
 
     return 0;
 }
