@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+
+struct node *createnode(int data)
+{
+    struct node *temp;
+    temp = (struct node *)malloc(sizeof(struct node));
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+
+    return temp;
+}
+
+int main()
+{
+
+    struct node *p = createnode(5);
+    struct node *p1 = createnode(7);
+    struct node *p2 = createnode(9);
+
+    p->left = p1;
+    p->right = p2;
+
+    return 0;
+}
