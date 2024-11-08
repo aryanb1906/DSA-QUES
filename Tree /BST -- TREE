@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    struct node *lchild;
+    int data;
+    struct node *rchild;
+};
+
+// Function to insert a new node with a given key in the binary search tree
+struct node* insert(struct node *root, int key)
+{
+    struct node *ptr, *temp, *par = NULL;
+    ptr = root;
+
+    // Traverse the tree to find the correct location for the new node
+    while(ptr != NULL)
+    {
+        par = ptr;
+        if(key < ptr->data)
+        {
+            ptr = ptr->lchild;
+        }
+        else
+        {
+            ptr = ptr->rchild;
+        }
+    }
+
+    // Create a new node and assign the key to the data field
+    temp = (struct node*)malloc(sizeof(struct node));
+    temp->data = key;
+    temp->lchild = NULL;
+    temp->rchild = NULL;
+
+    // If the tree is empty, set the new node as the root
+    if(par == NULL)
+    {
+        root = temp;
+    }
+    else if(key < par->data)
+    {
+        par->lchild = temp;
+    }
+    else
+    {
+        par->rchild = temp;
+    }
+    
+    return root;
+}
+
+// In-order traversal (Left, Root, Right)
+void inorder(struct node* root)
+{
+    if(root != NULL)
+    {
+        inorder(root->lchild);
+        printf("%d ", root->data);
+        inorder(root->rchild);
+    }
+}
+
+// Pre-order traversal (Root, Left, Right)
+void preorder(struct node* root)
+{
+    if(root != NULL)
+    {
+        printf("%d ", root->data);
+        preorder(root->lchild);
+        preorder(root->rchild);
+    }
+}
+
+// Post-order traversal (Left, Right, Root)
+void postorder(struct node* root)
+{
+    if(root != NULL)
+    {
+        postorder(root->lchild);
+        postorder(root->rchild);
+        printf("%d ", root->data);
+    }
+}
+
+int main()
+{
+    struct node *root = NULL;
+
+    // Insert nodes into the binary search tree
+    root = insert(root, 50);
+    root = insert(root, 30);
+    root = insert(root, 20);
+    root = insert(root, 40);
+    root = insert(root, 70);
+    root = insert(root, 60);
+    root = insert(root, 80);
+
+    // Perform different tree traversals
+    printf("In-order traversal: ");
+    inorder(root);
+    printf("\n");
+
+    printf("Pre-order traversal: ");
+    preorder(root);
+    printf("\n");
+
+    printf("Post-order traversal: ");
+    postorder(root);
+    printf("\n");
+
+    return 0;
+}
