@@ -124,23 +124,20 @@ void insert(struct node *root, int key)
 
 int findMin(struct node *root)
 {
-    struct node *current = root;
-    while (current && current->left != NULL)
+    while (root->left != NULL)
     {
-        current = current->left;
+        root = root->left;
     }
-    return current->data;
+    return root->data;
 }
-
 
 int findMax(struct node *root)
 {
-    struct node *current = root;
-    while (current && current->right != NULL)
+    while (root->right != NULL)
     {
-        current = current->right;
+        root = root->right;
     }
-    return current->data;
+    return root->data;
 }
 
 int main()
