@@ -72,7 +72,7 @@ int isBST(struct node *root)
 
 struct node *search(struct node *root, int key)
 {
-    if (root != NULL)
+    if (root == NULL)
     {
         return NULL;
     }
@@ -82,14 +82,12 @@ struct node *search(struct node *root, int key)
     }
     else if (key < root->data)
     {
-        root = root->left;
+        return search(root->left, key);
     }
     else
     {
-        root = root->right;
+        return search(root->right, key);
     }
-
-    return NULL;
 }
 
 void insert(struct node *root, int key)
@@ -100,7 +98,7 @@ void insert(struct node *root, int key)
         prev = root;
         if (key == root->data)
         {
-            printf("Cannot insert %d, already in BST", key);
+            printf("Cannot insert %d, already in BST\n", key);
             return;
         }
         else if (key < root->data)
@@ -123,29 +121,48 @@ void insert(struct node *root, int key)
     }
 }
 
+
+int findMin(struct node *root)
+{
+    struct node *current = root;
+    while (current && current->left != NULL)
+    {
+        current = current->left;
+    }
+    return current->data;
+}
+
+
+int findMax(struct node *root)
+{
+    struct node *current = root;
+    while (current && current->right != NULL)
+    {
+        current = current->right;
+    }
+    return current->data;
+}
+
 int main()
 {
-
-    // Constructing the root node - Using Function (Recommended)
+    
     struct node *p = createNode(5);
     struct node *p1 = createNode(3);
     struct node *p2 = createNode(6);
     struct node *p3 = createNode(1);
     struct node *p4 = createNode(4);
-    // Finally The tree looks like this:
-    //      5
-    //     / \
-    //    3   6
-    //   / \
-    //  1   4
-
-    // Linking the root node with left and right children
+    
+  
     p->left = p1;
     p->right = p2;
     p1->left = p3;
     p1->right = p4;
 
     insert(p, 16);
-    printf("%d", p->right->right->data);
+    printf("Inserted 16 into BST\n");
+
+    printf("Minimum element in BST: %d\n", findMin(p));
+    printf("Maximum element in BST: %d\n", findMax(p));
+
     return 0;
 }
