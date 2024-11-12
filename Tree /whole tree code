@@ -70,7 +70,7 @@ int isBST(struct node *root)
     }
 }
 
-struct node *searchIter(struct node *root, int key)
+struct node *search(struct node *root, int key)
 {
     if (root != NULL)
     {
